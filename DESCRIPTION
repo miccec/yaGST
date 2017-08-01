@@ -1,0 +1,14 @@
+Package: yaGST
+Type: Package
+Title: Competitive gene set and regulon tests.
+Version: 2017.08.01
+Date: 2017-08-01
+Author: Stefano M. Pagnotta
+Maintainer: Stefano M. Pagnotta <smpagnotta@gmail.com>
+Description: This is a collection of wrappers to the Wilcoxon test to run competitive gene set and regulon tests.
+License: What license is it under?
+Imports: ggplot2, doParallel
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+Depends: R (>= 3.0)
+License: GPL (>= 3)

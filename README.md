@@ -26,6 +26,65 @@ ans <- mwwGST(rankedList, geneSet, moreDetails = TRUE)
 plot(ans)
 
 ```
+## How to run an enrichment analysis on a collection of gene-sets.
+You may need to download the collection of gene-sets, for example from the Molecular Signatures Database at [the Broad Institute](http://software.broadinstitute.org/gsea/downloads.jsp)
+
+- [h.all.v6.0.symbols.gmt](http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.0/h.all.v6.0.symbols.gmt)
+
+In case the output of the analysis has to be saved in an .xls file, you need to install the [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) package.
+
+load the GO collections
+
+```{r}
+library(yaGST)
+GO <- gmt2GO("~/pathToYourFiles/h.all.v6.0.symbols.gmt")
+length(GO)
+```
+load the ranked list
+```{r}
+data("rankedList")
+head(rankedList)
+tail(rankedList)
+```
+run the mwwGST
+```{r}
+ans <- lapply(GO, function(x) mwwGST(rankedList, x, minLenGeneSet = 15, verbose = FALSE))
+```
+Now, arrange the results in a table
+
+```{r}
+actualGeneSetSize <- unlist(sapply(ans, function(x) x$actualGeneSetCount))
+originalGeneSetSize <- unlist(sapply(ans, function(x) x$originalGeneSetCount))
+pValue <- unlist(sapply(ans, function(x) x$p.value))
+qValue <- p.adjust(pValue)
+nes <- unlist(sapply(ans, function(x) x$nes))
+pu <- unlist(sapply(ans, function(x) x$pu))
+log2.pu <- unlist(sapply(ans, function(x) x$log.pu))
+result_table <- cbind(originalGeneSetSize, actualGeneSetSize,  
+  round(nes, 4), round(pu, 4), round(log2.pu, 4), round(pValue, 6), round(qValue, 6))
+colnames(result_table) <- c("originalGeneSetSize", "actualGeneSetSize", "NES", "pu", "log2_pu", "pValue", "qValue")
+result_table <- result_table[order(result_table[, "NES"], decreasing = TRUE),]
+```
+
+
+If needed, the table can be stored in an .xls file as follows 
+
+```{r, eval = FALSE}
+library(WriteXLS)
+gst_results <- as.data.frame(result_table)
+WriteXLS("gst_results", ExcelFileName = "~/pathToYourFiles/aNameForTheAnalysis.xls", row.names = TRUE)
+```
+
+filter and plot the results
+```{r}
+qValue_treshold <- 0.05
+NES_treshold <- 0.6
+selected <- which((result_table[, "NES"] > NES_treshold) & (result_table[, "qValue"] < qValue_treshold))
+result_table[selected,]
+first_geneSet <- names(selected)[1]
+plot(ans[[first_geneSet]], rankedList = rankedList, main = first_geneSet)
+```
+
 ## Running an extended enrichment analysis on a regulon (with positive and negative targets)
 ```{r}
 data("rankedList")

@@ -1,6 +1,6 @@
 # yaGST
 
-This is a collection of wrappers to the Wilcoxon test to run competitive gene set and regulon tests.
+This is a collection of wrappers to the Wilcoxon test to run competitive gene set tests and comparison between imbalanced datasets.
 
 
 ## Installation

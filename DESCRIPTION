@@ -1,7 +1,7 @@
 Package: yaGST
 Type: Package
 Title: Competitive gene set and regulon tests.
-Version: 2017.08.01
+Version: 2017.08.25
 Date: 2017-08-01
 Author: Stefano M. Pagnotta
 Maintainer: Stefano M. Pagnotta <smpagnotta@gmail.com>

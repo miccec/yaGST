@@ -36,7 +36,7 @@ gmt2GO(what)
 \seealso{\code{\link{GO2gmt}}, \code{\link{rankedList}}}
 
 \examples{
-library(mwwGSEA)
+library(yaGST)
 data("rankedList")
 
 # create a collection of gene sets

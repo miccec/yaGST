@@ -100,7 +100,7 @@ plot(ans)
 ```{r}
 nr <- 100; nc <- 1000
 # generate a data-matrix with nr samples, and nc features
-exprData <- matrix(rpois(nc * nr, 10), nrow = nr, ncol = nc)
+exprData <- matrix(rpois(nc * nr, 100), nrow = nr, ncol = nc)
 colnames(exprData) <- paste0("feat", 1:nc)
 rownames(exprData) <- paste0("sam", 1:nr)
 

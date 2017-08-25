@@ -81,8 +81,8 @@ qValue_treshold <- 0.05
 NES_treshold <- 0.6
 selected <- which((result_table[, "NES"] > NES_treshold) & (result_table[, "qValue"] < qValue_treshold))
 result_table[selected,]
-
-plot(ans[[rownames(result_table)[1]]], rankedList = rankedList, main = rownames(result_table)[1])
+first_geneSet <- names(selected)[1]
+plot(ans[[first_geneSet]], rankedList = rankedList, main = first_geneSet)
 ```
 
 ## Running an extended enrichment analysis on a regulon (with positive and negative targets)

@@ -33,20 +33,20 @@ You may need to download the collection of gene-sets, for example from the Molec
 
 In case the output of the analysis has to be saved in an .xls file, you need to install the [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) package.
 
-# load the GO collections
+### load the GO collections
 
 ```{r}
 library(yaGST)
 GO <- gmt2GO("~/pathToYourFiles/h.all.v6.0.symbols.gmt")
 length(GO)
 ```
-# load the ranked list
+### load the ranked list
 ```{r}
 data("rankedList")
 head(rankedList)
 tail(rankedList)
 ```
-# run the mwwGST
+### run the mwwGST
 ```{r, eval =FALSE}
 ans <- lapply(GO, function(x) mwwGST(rankedList, x, minLenGeneSet = 15, verbose = FALSE))
 ```

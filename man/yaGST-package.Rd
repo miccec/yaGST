@@ -1,6 +1,5 @@
 \name{yaGST-package}
 \alias{yaGST-package}
-%\alias{mwwGSEA}
 \docType{package}
 \title{
   \packageTitle{yaGST}

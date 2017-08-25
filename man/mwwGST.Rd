@@ -42,7 +42,7 @@ mwwGST(rankedList, geneSet, minLenGeneSet = 5, alternative = "greater", moreDeta
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{rankedList}}, \code{\link{mwwExtGSEA}}}
+\seealso{\code{\link{rankedList}}, \code{\link{mwwExtGST}}}
 \examples{
   library(yaGST)
   data("rankedList")

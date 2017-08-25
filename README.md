@@ -26,6 +26,14 @@ ans <- mwwGST(rankedList, geneSet, moreDetails = TRUE)
 plot(ans)
 
 ```
+## How to run an enrichment analysis with the yaGST package on a collection of gene-sets.
+You may need to download the collection of gene-sets, for example from the Molecular Signatures Database at [the Broad Institute](http://software.broadinstitute.org/gsea/downloads.jsp)
+
+- [h.all.v6.0.symbols.gmt](http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.0/h.all.v6.0.symbols.gmt)
+
+In case the output of the analysis has to be saved in an .xls file, you need to install the [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) package.
+
+
 ## Running an extended enrichment analysis on a regulon (with positive and negative targets)
 ```{r}
 data("rankedList")

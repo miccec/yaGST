@@ -33,26 +33,26 @@ You may need to download the collection of gene-sets, for example from the Molec
 
 In case the output of the analysis has to be saved in an .xls file, you need to install the [WriteXLS](https://cran.r-project.org/web/packages/WriteXLS/index.html) package.
 
-### load the GO collections
+load the GO collections
 
 ```{r}
 library(yaGST)
 GO <- gmt2GO("~/pathToYourFiles/h.all.v6.0.symbols.gmt")
 length(GO)
 ```
-### load the ranked list
+load the ranked list
 ```{r}
 data("rankedList")
 head(rankedList)
 tail(rankedList)
 ```
-### run the mwwGST
-```{r, eval =FALSE}
+run the mwwGST
+```{r}
 ans <- lapply(GO, function(x) mwwGST(rankedList, x, minLenGeneSet = 15, verbose = FALSE))
 ```
 Now, arrange the results in a table
 
-```{r, eval = TRUE}
+```{r}
 actualGeneSetSize <- unlist(sapply(ans, function(x) x$actualGeneSetCount))
 originalGeneSetSize <- unlist(sapply(ans, function(x) x$originalGeneSetCount))
 pValue <- unlist(sapply(ans, function(x) x$p.value))
@@ -73,6 +73,16 @@ If needed, the table can be stored in an .xls file as follows
 library(WriteXLS)
 gst_results <- as.data.frame(result_table)
 WriteXLS("gst_results", ExcelFileName = "~/pathToYourFiles/aNameForTheAnalysis.xls", row.names = TRUE)
+```
+
+filter and plot the results
+```{r}
+qValue_treshold <- 0.05
+NES_treshold <- 0.6
+selected <- which((result_table[, "NES"] > NES_treshold) & (result_table[, "qValue"] < qValue_treshold))
+result_table[selected,]
+
+plot(ans[[rownames(result_table)[1]]], rankedList = rankedList, main = rownames(result_table)[1])
 ```
 
 ## Running an extended enrichment analysis on a regulon (with positive and negative targets)

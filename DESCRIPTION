@@ -10,5 +10,5 @@ License: What license is it under?
 Imports: ggplot2, doParallel
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
-Depends: R (>= 3.0)
+Depends: doParallel (>= 1.0.10),  R (>= 3.0)
 License: GPL (>= 3)

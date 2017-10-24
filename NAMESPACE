@@ -1,6 +1,6 @@
+import(doParallel)
 export(mwwGST, print.mwwGST, plot.mwwGST)
 export(mwwExtGST, print.mwwExtGST, plot.mwwExtGST)
 export(gmt2GO)
 export(GO2gmt)
 export(eeMWW)
-import(doParallel)

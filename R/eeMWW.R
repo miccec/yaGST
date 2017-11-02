@@ -6,7 +6,7 @@ function(ddata, minoritySet, runs = 1000) {
   
   a_foreach  <- foreach(k = 1:runs) %dopar% {
     sampled_majoritySet <- sample(majoritySet, doubled_m, replace = FALSE)
-    tmp <- apply(ddata, 2, function(x) wilcox.test(x[minoritySet], x[sampled_majoritySet])$statistic)
+    tmp <- apply(ddata, 2, function(x) suppressWarnings(wilcox.test(x[minoritySet], x[sampled_majoritySet])$statistic))
     return(tmp)
   }
   ans <- a_foreach[[1]]
